@@ -1,0 +1,87 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Google credentials
+credentials.json
+*.json
+!package.json
+!package-lock.json
+!fixtures/demo_data.json
+!miniapp/services/vacancy_icon_map.json
+!miniapp/services/vacancy_web_logo_map.json
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Generated files
+vacancies.csv
+
+# Logs
+*.log
+logs/
+
+# Docker
+.docker-local/
+
+# Local deployment archives
+*.zip
+
+# OS
+Thumbs.db
+
+
+# Image cache
+cache/
+.env
+docker-compose.google-sheets.yml
+docker-compose.override.yml
+
+# Release repository: presentation and working materials are separate.
+presentation/
+backups/
+*.pdf
+*.fig
+*.zip
+assets/images/logos/vacancy/

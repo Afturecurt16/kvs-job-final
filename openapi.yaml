@@ -1,0 +1,72 @@
+openapi: 3.1.0
+info:
+  title: KVS Job Mini App API
+  version: 1.0.0
+  description: Public endpoints used by the DATA-API technical checks.
+servers:
+  - url: https://staging.allspace.com.ru
+paths:
+  /healthz:
+    get:
+      summary: Service health check
+      responses:
+        "200":
+          description: Service is available
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, service]
+  /api/v1/bootstrap:
+    get:
+      summary: Mini App backend contract
+      responses:
+        "200":
+          description: Public Mini App configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [mode, entities, frontend, vacancySource]
+  /api/v1/vacancies:
+    get:
+      summary: List vacancies
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Vacancy catalogue
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, total, categories, maintenance]
+  /api/v1/partners:
+    get:
+      summary: List partner companies
+      responses:
+        "200":
+          description: Active partner companies
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, total, source]
+  /api/v1/events:
+    get:
+      summary: List career events
+      responses:
+        "200":
+          description: Active career events
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, total, categories]

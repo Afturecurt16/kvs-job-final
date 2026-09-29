@@ -1,0 +1,50 @@
+{
+  "description": "Синтетические данные KVS Job для локальной проверки. Не реальные вакансии или мероприятие.",
+  "company": {
+    "name": "ДЕМО — Карьерная лаборатория",
+    "description": "Учебная компания для проверки интерфейса, без реального найма.",
+    "is_partner": true,
+    "is_active": true
+  },
+  "vacancies": [
+    {
+      "source_key": "kvs-demo-analyst-v1",
+      "organization": "ДЕМО — Карьерная лаборатория",
+      "position": "ДЕМО — Стажёр-аналитик",
+      "sphere": "Аналитика данных",
+      "salary": "Учебный пример",
+      "schedule": "Гибкий график",
+      "work_format": "Гибрид",
+      "description": "Тестовая вакансия для проверки поиска, фильтра ИТиАБД и избранного.",
+      "employment_format": "Стажировка",
+      "vacancy_url": "https://example.org/",
+      "itiabd": true,
+      "feb": false
+    },
+    {
+      "source_key": "kvs-demo-economist-v1",
+      "organization": "ДЕМО — Карьерная лаборатория",
+      "position": "ДЕМО — Стажёр-экономист",
+      "sphere": "Финансы",
+      "salary": "Учебный пример",
+      "schedule": "Неполный день",
+      "work_format": "Офис",
+      "description": "Тестовая вакансия для проверки фильтра ФЭБ. Отклик ведёт на демонстрационный адрес.",
+      "employment_format": "Стажировка",
+      "vacancy_url": "https://example.org/",
+      "itiabd": false,
+      "feb": true
+    }
+  ],
+  "event": {
+    "title": "ДЕМО — Проверка записи и резерва",
+    "category": "Мастер-классы",
+    "format": "Офлайн",
+    "lead": "Тестовый сценарий: одно место и резерв",
+    "place": "Учебная аудитория — демонстрационные данные",
+    "description": "Создано для технической проверки KVS Job. Сначала записывается student1, затем student2. После отмены student1 второй участник переходит из резерва в основной список.",
+    "capacity": 1,
+    "is_active": true
+  },
+  "event_days_from_load": 7
+}

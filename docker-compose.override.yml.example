@@ -1,0 +1,13 @@
+﻿# Copy to docker-compose.override.yml for local Docker Compose runs.
+# Keep credentials.json outside the image and Git.
+services:
+  bot:
+    environment:
+      GOOGLE_CREDENTIALS_FILE: /app/credentials.json
+    volumes:
+      - type: bind
+        source: ./credentials.json
+        target: /app/credentials.json
+        read_only: true
+        bind:
+          create_host_path: false

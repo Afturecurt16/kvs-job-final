@@ -1,0 +1,83 @@
+# DATA-API 1.0. This file contains no credentials or other secrets.
+schemaVersion: "1.0"
+
+solution:
+  name: "KVS Job Mini App"
+  teamId: "kvs-job"
+
+api:
+  # Public staging URL used for technical checks.
+  baseUrl: "https://staging.allspace.com.ru"
+  openapi: "./openapi.yaml"
+  defaultHeaders:
+    Accept: "application/json"
+
+checks:
+  - id: "healthz"
+    name: "Service health check"
+    description: "The Mini App backend responds and reports a healthy status."
+    method: "GET"
+    path: "/healthz"
+    role: "public"
+    expected:
+      statusCodes: [200]
+      contentType: "application/json"
+      requiredFields: ["status", "service"]
+    timeoutMs: 5000
+    repeatable: true
+
+  - id: "bootstrap"
+    name: "Mini App backend contract"
+    description: "Returns the public configuration used by the client application."
+    method: "GET"
+    path: "/api/v1/bootstrap"
+    role: "public"
+    expected:
+      statusCodes: [200]
+      contentType: "application/json"
+      requiredFields: ["mode", "entities", "frontend", "vacancySource"]
+    timeoutMs: 5000
+    repeatable: true
+
+  - id: "list-vacancies"
+    name: "List vacancies"
+    description: "Returns the vacancy catalogue with pagination metadata."
+    method: "GET"
+    path: "/api/v1/vacancies"
+    role: "public"
+    request:
+      query:
+        limit: 10
+        offset: 0
+    expected:
+      statusCodes: [200]
+      contentType: "application/json"
+      requiredFields: ["items", "total", "categories", "maintenance"]
+    timeoutMs: 5000
+    repeatable: true
+
+  - id: "list-partners"
+    name: "List partner companies"
+    description: "Returns active partner companies available to students."
+    method: "GET"
+    path: "/api/v1/partners"
+    role: "public"
+    expected:
+      statusCodes: [200]
+      contentType: "application/json"
+      requiredFields: ["items", "total", "source"]
+    timeoutMs: 5000
+    repeatable: true
+
+  - id: "list-events"
+    name: "List career events"
+    description: "Returns active events and available event categories."
+    method: "GET"
+    path: "/api/v1/events"
+    role: "public"
+    expected:
+      statusCodes: [200]
+      contentType: "application/json"
+      requiredFields: ["items", "total", "categories"]
+    timeoutMs: 5000
+    repeatable: true

@@ -1,0 +1,10 @@
+sqlalchemy[asyncio]==2.0.44
+asyncpg==0.29.0
+gspread==6.1.2
+google-auth==2.34.0
+google-auth-oauthlib==1.2.1
+google-auth-httplib2==0.2.0
+python-dotenv==1.0.1
+Pillow==10.4.0
+fastapi==0.115.6
+uvicorn[standard]==0.32.1

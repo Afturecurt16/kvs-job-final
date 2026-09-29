@@ -1,0 +1,15 @@
+# Use with: docker compose -f docker-compose.yml -f docker-compose.google-sheets.yml up -d --build
+# Copy this file to docker-compose.google-sheets.yml on the server.
+# Set GOOGLE_CREDENTIALS_HOST_FILE in the server's .env to the existing key file.
+# The key stays outside the Docker image and is mounted read-only.
+services:
+  bot:
+    environment:
+      GOOGLE_CREDENTIALS_FILE: /app/credentials.json
+    volumes:
+      - type: bind
+        source: ${GOOGLE_CREDENTIALS_HOST_FILE:-./credentials.json}
+        target: /app/credentials.json
+        read_only: true
+        bind:
+          create_host_path: false

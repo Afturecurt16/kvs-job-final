@@ -1,0 +1,73 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: kvs_bot_postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME:-kvs_bot}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    ports:
+      - "${DB_PORT:-15432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - kvs_bot_network
+
+  bot:
+    build: .
+    container_name: kvs_bot
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      MAX_BOT_TOKEN: ${MAX_BOT_TOKEN:-}
+      MAX_ADMIN_IDS: ${MAX_ADMIN_IDS:-}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-253103@edu.fa.ru}
+      MAX_REQUIRED_CHANNEL_ID: ${MAX_REQUIRED_CHANNEL_ID:-0}
+      MAX_REQUIRED_CHANNEL_URL: ${MAX_REQUIRED_CHANNEL_URL:-}
+      MAX_API_BASE_URL: ${MAX_API_BASE_URL:-https://platform-api2.max.ru}
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-kvs_bot}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+      GOOGLE_SHEETS_URL: ${GOOGLE_SHEETS_URL:-}
+      EVENTS_GOOGLE_SHEETS_URL: ${EVENTS_GOOGLE_SHEETS_URL:-}
+      GOOGLE_CREDENTIALS_FILE: ${GOOGLE_CREDENTIALS_FILE:-credentials.json}
+      GOOGLE_SHEET_NAME: ${GOOGLE_SHEET_NAME:-}
+      SEED_DEMO_DATA: ${SEED_DEMO_DATA:-false}
+      VACANCY_SYNC_SCHEDULE_ENABLED: ${VACANCY_SYNC_SCHEDULE_ENABLED:-true}
+      VACANCY_SYNC_HOUR: ${VACANCY_SYNC_HOUR:-0}
+      VACANCY_SYNC_MINUTE: ${VACANCY_SYNC_MINUTE:-0}
+      VACANCY_SYNC_TIMEZONE: ${VACANCY_SYNC_TIMEZONE:-Europe/Moscow}
+      VACANCY_SYNC_ALLOW_EMPTY: ${VACANCY_SYNC_ALLOW_EMPTY:-false}
+      MINIAPP_ENABLED: ${MINIAPP_ENABLED:-true}
+      MINIAPP_HOST: 0.0.0.0
+      MINIAPP_PORT: ${MINIAPP_PORT:-8000}
+      MINIAPP_PUBLIC_URL: ${MINIAPP_PUBLIC_URL:-http://localhost:8000/miniapp}
+      MINIAPP_DEV_ADMIN_ENABLED: ${MINIAPP_DEV_ADMIN_ENABLED:-false}
+      EVENT_REMINDERS_ENABLED: ${EVENT_REMINDERS_ENABLED:-true}
+      EVENT_REMINDER_POLL_SECONDS: ${EVENT_REMINDER_POLL_SECONDS:-60}
+    ports:
+      - "${MINIAPP_PORT:-8000}:${MINIAPP_PORT:-8000}"
+    volumes:
+      - images_cache:/app/cache/images
+      - event_uploads:/app/miniapp/static/uploads/events
+    restart: unless-stopped
+    networks:
+      - kvs_bot_network
+
+volumes:
+  postgres_data:
+  images_cache:
+  event_uploads:
+
+networks:
+  kvs_bot_network:
+    driver: bridge
+

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">KVS Job — команда Fukvs</title>
+  <desc id="desc">Карьерные возможности студентов в MAX. Вакансии, партнёры и мероприятия.</desc>
+  <rect width="1200" height="300" rx="18" fill="#121214"/>
+  <rect x="48" width="84" height="5" fill="#c40016"/>
+  <g font-family="Segoe UI,Arial,sans-serif">
+    <text x="48" y="52" font-size="15" font-weight="700" fill="#ff5269" letter-spacing="2">FUKVS / MAX MINI APP</text>
+    <text x="44" y="142" font-size="76" font-weight="700" fill="#f4f4f6">KVS Job</text>
+    <text x="48" y="191" font-size="25" fill="#f4f4f6">Карьерные возможности. Понятный следующий шаг.</text>
+    <text x="48" y="251" font-size="18" fill="#b8bbc4">Вакансии · Компании · Мероприятия</text>
+    <rect x="937" y="46" width="215" height="208" rx="14" fill="#202126" stroke="#383941"/>
+    <text x="959" y="86" font-size="13" fill="#b8bbc4" letter-spacing="1">ПУТЬ СТУДЕНТА</text>
+    <text x="959" y="128" font-size="22" font-weight="700" fill="#f4f4f6">Найти</text>
+    <text x="959" y="169" font-size="22" font-weight="700" fill="#f4f4f6">Выбрать</text>
+    <rect x="956" y="191" width="176" height="40" rx="8" fill="#c40016"/>
+    <text x="974" y="218" font-size="21" font-weight="700" fill="#fff">Записаться →</text>
+  </g>
+</svg>
